@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>뷰티 블로거 포트폴리오 | OL's Beauty Story</title>
+  <style>
+    :root {
+      --ink: #24201f;
+      --muted: #6f6662;
+      --line: #e6ddda;
+      --paper: #fffaf8;
+      --soft: #f7efec;
+      --accent: #b95f6a;
+      --accent-dark: #8f3849;
+      --sage: #6f8372;
+      --rose: #f0d5d7;
+      --sun: #f4c567;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(57, 38, 34, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans KR", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(230, 221, 218, 0.82);
+      background: rgba(255, 250, 248, 0.9);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 72px;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--white);
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      padding: 10px 12px;
+      border-radius: 999px;
+    }
+
+    .nav-links a:hover {
+      background: var(--soft);
+      color: var(--accent-dark);
+    }
+
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      position: relative;
+      width: 18px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 18px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    .nav-toggle span::before {
+      top: -6px;
+    }
+
+    .nav-toggle span::after {
+      top: 6px;
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 72px);
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      background: #2a2422;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 34%;
+      filter: saturate(0.94) contrast(0.95);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(18, 13, 12, 0.74) 0%, rgba(18, 13, 12, 0.42) 42%, rgba(18, 13, 12, 0.18) 100%),
+        linear-gradient(0deg, rgba(18, 13, 12, 0.62) 0%, rgba(18, 13, 12, 0.04) 45%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 84px 0 54px;
+      color: var(--white);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 38px;
+      height: 2px;
+      background: var(--sun);
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(42px, 7vw, 92px);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+      margin: 24px 0 0;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: clamp(17px, 2vw, 21px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 12px 18px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--white);
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      background: var(--accent-dark);
+    }
+
+    .btn.secondary {
+      border-color: rgba(255, 255, 255, 0.36);
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--white);
+    }
+
+    .btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .hero-proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      width: min(760px, 100%);
+      margin-top: 56px;
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .proof-item {
+      padding: 18px 20px 18px 0;
+    }
+
+    .proof-item strong {
+      display: block;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1;
+    }
+
+    .proof-item span {
+      display: block;
+      margin-top: 8px;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 14px;
+    }
+
+    section {
+      padding: 92px 0;
+    }
+
+    .section-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 34px;
+    }
+
+    .section-label {
+      margin: 0 0 10px;
+      color: var(--accent-dark);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4.6vw, 54px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .section-desc {
+      max-width: 520px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 34px;
+      align-items: stretch;
+    }
+
+    .portrait-panel {
+      min-height: 590px;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      background: var(--soft);
+    }
+
+    .portrait-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .about-content {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .bio {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .bio p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .skill {
+      min-height: 140px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .skill b {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .skill span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .services {
+      background: #fbf4f1;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      min-height: 258px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .service-icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 20px;
+      border-radius: 50%;
+      background: var(--soft);
+      color: var(--accent-dark);
+    }
+
+    .service-card h3,
+    .case-card h3,
+    .timeline-card h3 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      line-height: 1.25;
+    }
+
+    .service-card p,
+    .case-card p,
+    .timeline-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      min-height: 40px;
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--muted);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .filter-btn.is-active {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .case-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 12px 30px rgba(57, 38, 34, 0.08);
+    }
+
+    .case-image {
+      aspect-ratio: 4 / 3;
+      background: var(--soft);
+      overflow: hidden;
+    }
+
+    .case-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 260ms ease;
+    }
+
+    .case-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .case-body {
+      padding: 22px;
+    }
+
+    .case-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+      color: var(--accent-dark);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .case-detail {
+      margin-top: 18px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--accent-dark);
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .timeline {
+      background: #fff;
+    }
+
+    .timeline-list {
+      display: grid;
+      gap: 14px;
+      border-left: 2px solid var(--rose);
+      padding-left: 24px;
+    }
+
+    .timeline-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 22px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+    }
+
+    .timeline-card::before {
+      content: "";
+      position: absolute;
+      left: -31px;
+      top: 28px;
+      width: 12px;
+      height: 12px;
+      border: 3px solid var(--paper);
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .timeline-date {
+      color: var(--accent-dark);
+      font-weight: 900;
+    }
+
+    .press-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .quote {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .quote blockquote {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.45;
+    }
+
+    .quote cite {
+      display: block;
+      margin-top: 18px;
+      color: var(--muted);
+      font-style: normal;
+      font-weight: 800;
+    }
+
+    .contact {
+      color: var(--white);
+      background: var(--ink);
+    }
+
+    .contact .section-label,
+    .contact .section-desc {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .contact h2 {
+      max-width: 720px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: 32px;
+      align-items: start;
+      margin-top: 34px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .contact-list a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 52px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 12px;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field label {
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--ink);
+      padding: 13px 14px;
+      outline: none;
+    }
+
+    .field textarea {
+      min-height: 132px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--sun);
+      box-shadow: 0 0 0 3px rgba(244, 197, 103, 0.22);
+    }
+
+    .form-status {
+      min-height: 24px;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 14px;
+    }
+
+    .site-footer {
+      padding: 26px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--ink);
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      font-size: 14px;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(20, 15, 14, 0.72);
+    }
+
+    .modal.is-open {
+      display: grid;
+    }
+
+    .modal-panel {
+      width: min(720px, 100%);
+      max-height: min(760px, calc(100vh - 40px));
+      overflow: auto;
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .modal-image {
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: var(--soft);
+    }
+
+    .modal-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-body {
+      padding: 28px;
+    }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .modal-close {
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .modal-body h3 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      line-height: 1.15;
+    }
+
+    .modal-body p {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .modal-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .modal-stats div {
+      padding: 16px;
+      border-radius: 8px;
+      background: var(--soft);
+    }
+
+    .modal-stats strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .modal-stats span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 520ms ease, transform 520ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 980px) {
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px 16px 18px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 250, 248, 0.98);
+      }
+
+      .nav-links.is-open {
+        display: flex;
+      }
+
+      .nav-links a {
+        border-radius: 8px;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait-panel {
+        min-height: 460px;
+      }
+
+      .service-grid,
+      .case-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section-head {
+        display: grid;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .hero {
+        min-height: 760px;
+      }
+
+      .hero-media img {
+        object-position: 58% center;
+      }
+
+      .hero::after {
+        background:
+          linear-gradient(0deg, rgba(18, 13, 12, 0.78) 0%, rgba(18, 13, 12, 0.25) 74%),
+          linear-gradient(90deg, rgba(18, 13, 12, 0.4), rgba(18, 13, 12, 0.18));
+      }
+
+      .hero-inner {
+        padding-bottom: 38px;
+      }
+
+      .hero-proof,
+      .skill-grid,
+      .service-grid,
+      .case-grid,
+      .press-grid,
+      .form-row,
+      .modal-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-proof {
+        margin-top: 34px;
+      }
+
+      .proof-item {
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      section {
+        padding: 68px 0;
+      }
+
+      .timeline-list {
+        padding-left: 18px;
+      }
+
+      .timeline-card {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .timeline-card::before {
+        left: -25px;
+      }
+
+      .footer-inner {
+        display: grid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="주요 메뉴">
+      <a class="brand" href="#top" aria-label="Min Seo Beauty 홈">
+        <span class="brand-mark">MS</span>
+        <span>Min Seo Beauty</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">소개</a>
+        <a href="#services">전문 분야</a>
+        <a href="#work">캠페인</a>
+        <a href="#career">경력</a>
+        <a href="#contact">문의</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-media" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=2200&q=82" alt="">
+      </div>
+      <div class="hero-inner">
+        <p class="eyebrow">Beauty Blogger Portfolio</p>
+        <h1 id="hero-title">브랜드의 결을 읽고, 독자가 따라 하고 싶은 뷰티 콘텐츠로 바꿉니다.</h1>
+        <p class="hero-copy">뷰티 블로거 김민서는 스킨케어, 메이크업, 클린뷰티 캠페인을 중심으로 리뷰 기획부터 촬영, 숏폼, 검색 유입형 블로그 콘텐츠까지 운영합니다.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#work">대표 캠페인 보기</a>
+          <a class="btn secondary" href="#contact">협업 문의</a>
+        </div>
+        <div class="hero-proof" aria-label="핵심 성과">
+          <div class="proof-item">
+            <strong data-count="8">0</strong>
+            <span>년차 뷰티 콘텐츠 경력</span>
+          </div>
+          <div class="proof-item">
+            <strong data-count="126">0</strong>
+            <span>브랜드 협업 프로젝트</span>
+          </div>
+          <div class="proof-item">
+            <strong data-count="340">0</strong>
+            <span>월 평균 콘텐츠 도달, 만</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-label">Profile</p>
+            <h2>성분, 피부 타입, 사용 장면을 한 번에 설계하는 뷰티 에디터형 블로거</h2>
+          </div>
+          <p class="section-desc">제품을 예쁘게 보여주는 데서 끝나지 않고, 독자가 구매 전 궁금해하는 제형, 지속력, 향, 루틴 궁합을 실제 사용 맥락으로 정리합니다.</p>
+        </div>
+        <div class="about-grid">
+          <div class="portrait-panel reveal">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=84" alt="뷰티 블로거 프로필 이미지">
+          </div>
+          <div class="about-content">
+            <div class="bio reveal">
+              <p>네이버 뷰티 인플루언서와 인스타그램 릴스 채널을 함께 운영하며, 20대 후반부터 40대 초반까지의 실구매 독자를 타깃으로 콘텐츠를 제작해 왔습니다. 브랜드의 톤앤매너를 유지하면서도 개인 채널 특유의 신뢰도와 체험감을 살리는 것을 가장 중요하게 봅니다.</p>
+            </div>
+            <div class="skill-grid">
+              <article class="skill reveal">
+                <b>검색형 리뷰 기획</b>
+                <span>키워드 리서치, 제품 비교표, 사용 전후 기록으로 블로그 체류 시간을 높입니다.</span>
+              </article>
+              <article class="skill reveal">
+                <b>비주얼 디렉팅</b>
+                <span>제품 텍스처, 패키지 컬러, 피부 표현이 잘 보이는 촬영 콘셉트를 잡습니다.</span>
+              </article>
+              <article class="skill reveal">
+                <b>숏폼 스토리텔링</b>
+                <span>3초 후킹, 발림성 컷, 완성 룩 전환으로 릴스와 쇼츠 성과를 개선합니다.</span>
+              </article>
+              <article class="skill reveal">
+                <b>캠페인 리포팅</b>
+                <span>조회, 저장, 클릭, 댓글 반응을 정리해 다음 협업 의사결정에 연결합니다.</span>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-label">Expertise</p>
+            <h2>브랜드 협업에 필요한 콘텐츠 제작 범위</h2>
+          </div>
+          <p class="section-desc">단발 리뷰부터 런칭 캠페인, 시즌 룩북, 체험단 가이드까지 채널별 목적에 맞춰 제작합니다.</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card reveal">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 4h14v16H5z" stroke="currentColor" stroke-width="2"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>블로그 리뷰</h3>
+            <p>검색 키워드 기반 상세 리뷰, 비교형 포스트, 루틴 추천 콘텐츠를 제작합니다.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16v10H4z" stroke="currentColor" stroke-width="2"/><path d="m9 7 2-3h2l2 3M9 17l-2 3m8-3 2 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>제품 촬영</h3>
+            <p>패키지, 텍스처, 피부 발색, 욕실 및 파우치 연출컷을 세트로 제공합니다.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4 5v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>릴스와 쇼츠</h3>
+            <p>언박싱, 사용 전후, 데일리 메이크업 루틴 등 짧은 호흡의 영상을 만듭니다.</p>
+          </article>
+          <article class="service-card reveal">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 19V5M4 19h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 15v-4M12 15V8M16 15v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>성과 리포트</h3>
+            <p>콘텐츠별 반응과 인사이트를 정리해 다음 캠페인 개선안을 제안합니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-label">Selected Work</p>
+            <h2>대표 협업 캠페인</h2>
+          </div>
+          <div class="filters" aria-label="캠페인 필터">
+            <button class="filter-btn is-active" type="button" data-filter="all">전체</button>
+            <button class="filter-btn" type="button" data-filter="skincare">스킨케어</button>
+            <button class="filter-btn" type="button" data-filter="makeup">메이크업</button>
+            <button class="filter-btn" type="button" data-filter="clean">클린뷰티</button>
+          </div>
+        </div>
+        <div class="case-grid">
+          <article class="case-card reveal" data-category="skincare">
+            <div class="case-image">
+              <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1000&q=82" alt="수분 세럼 캠페인 제품 이미지">
+            </div>
+            <div class="case-body">
+              <div class="case-meta"><span>Hydra Serum</span><span>2026</span></div>
+              <h3>민감 피부 수분 세럼 런칭 리뷰</h3>
+              <p>7일 사용 기록과 제형 클로즈업을 결합해 검색 유입과 저장 반응을 함께 끌어낸 캠페인입니다.</p>
+              <button class="case-detail" type="button" data-case="0">자세히 보기</button>
+            </div>
+          </article>
+          <article class="case-card reveal" data-category="makeup">
+            <div class="case-image">
+              <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=1000&q=82" alt="립 메이크업 캠페인 이미지">
+            </div>
+            <div class="case-body">
+              <div class="case-meta"><span>Velvet Lip</span><span>2025</span></div>
+              <h3>가을 립 컬러 5종 발색 콘텐츠</h3>
+              <p>피부 톤별 추천과 실내외 발색 비교를 구성해 구매 전환형 댓글 문의를 늘렸습니다.</p>
+              <button class="case-detail" type="button" data-case="1">자세히 보기</button>
+            </div>
+          </article>
+          <article class="case-card reveal" data-category="clean">
+            <div class="case-image">
+              <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1000&q=82" alt="클린뷰티 루틴 제품 이미지">
+            </div>
+            <div class="case-body">
+              <div class="case-meta"><span>Clean Routine</span><span>2025</span></div>
+              <h3>비건 클렌징 루틴 숏폼 시리즈</h3>
+              <p>아침, 운동 후, 저녁 루틴으로 나눈 릴스 시리즈를 제작해 반복 노출을 설계했습니다.</p>
+              <button class="case-detail" type="button" data-case="2">자세히 보기</button>
+            </div>
+          </article>
+          <article class="case-card reveal" data-category="makeup">
+            <div class="case-image">
+              <img src="https://images.unsplash.com/photo-1487412912498-0447578fcca8?auto=format&fit=crop&w=1000&q=82" alt="베이스 메이크업 캠페인 이미지">
+            </div>
+            <div class="case-body">
+              <div class="case-meta"><span>Base Lab</span><span>2024</span></div>
+              <h3>여름 쿠션 지속력 테스트</h3>
+              <p>출근 전후, 야외 이동, 마스크 착용 후 컷을 시간대별로 정리한 비교형 리뷰입니다.</p>
+              <button class="case-detail" type="button" data-case="3">자세히 보기</button>
+            </div>
+          </article>
+          <article class="case-card reveal" data-category="skincare">
+            <div class="case-image">
+              <img src="https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1000&q=82" alt="홈 스파 스킨케어 캠페인 이미지">
+            </div>
+            <div class="case-body">
+              <div class="case-meta"><span>Home Spa</span><span>2024</span></div>
+              <h3>슬리핑 마스크 홈케어 기획</h3>
+              <p>피부 컨디션 회복 루틴을 중심으로 제품 사용감과 다음날 메이크업 궁합을 보여줬습니다.</p>
+              <button class="case-detail" type="button" data-case="4">자세히 보기</button>
+            </div>
+          </article>
+          <article class="case-card reveal" data-category="clean">
+            <div class="case-image">
+              <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=1000&q=82" alt="친환경 패키지 캠페인 이미지">
+            </div>
+            <div class="case-body">
+              <div class="case-meta"><span>Eco Beauty</span><span>2023</span></div>
+              <h3>리필 패키지 캠페인 스토리</h3>
+              <p>지속 가능한 패키징 메시지를 일상 루틴과 연결해 브랜드 가치를 자연스럽게 전달했습니다.</p>
+              <button class="case-detail" type="button" data-case="5">자세히 보기</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="timeline" id="career">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-label">Career</p>
+            <h2>콘텐츠 채널을 키워온 흐름</h2>
+          </div>
+          <p class="section-desc">블로그 기반 리뷰에서 시작해 영상, 라이브, 브랜드 컨설팅까지 확장했습니다.</p>
+        </div>
+        <div class="timeline-list">
+          <article class="timeline-card reveal">
+            <div class="timeline-date">2024 - 현재</div>
+            <div>
+              <h3>뷰티 캠페인 크리에이티브 파트너</h3>
+              <p>브랜드 런칭 콘텐츠, 인플루언서 체험단 가이드, 숏폼 콘티 제작을 함께 진행합니다.</p>
+            </div>
+          </article>
+          <article class="timeline-card reveal">
+            <div class="timeline-date">2021 - 2023</div>
+            <div>
+              <h3>네이버 뷰티 인플루언서 선정</h3>
+              <p>스킨케어 리뷰와 성분 중심 콘텐츠로 월간 검색 유입을 안정적으로 확보했습니다.</p>
+            </div>
+          </article>
+          <article class="timeline-card reveal">
+            <div class="timeline-date">2018 - 2020</div>
+            <div>
+              <h3>메이크업 튜토리얼 채널 운영</h3>
+              <p>데일리 룩, 퍼스널 컬러, 계절 컬렉션 중심의 이미지와 영상 콘텐츠를 제작했습니다.</p>
+            </div>
+          </article>
+          <article class="timeline-card reveal">
+            <div class="timeline-date">2016 - 2017</div>
+            <div>
+              <h3>뷰티 블로그 개설</h3>
+              <p>로드샵 신제품 리뷰와 파우치 추천 글로 커뮤니티 기반 독자를 만들기 시작했습니다.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="press">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-label">Testimonials</p>
+            <h2>협업 브랜드의 피드백</h2>
+          </div>
+        </div>
+        <div class="press-grid">
+          <figure class="quote reveal">
+            <blockquote>제품의 장점을 과장하지 않고 실제 사용 포인트로 풀어내서 댓글 문의 품질이 좋았습니다.</blockquote>
+            <cite>스킨케어 브랜드 마케팅 매니저</cite>
+          </figure>
+          <figure class="quote reveal">
+            <blockquote>촬영 톤, 원고, 업로드 후 리포트까지 일정 관리가 안정적이라 시즌 캠페인을 믿고 맡겼습니다.</blockquote>
+            <cite>메이크업 브랜드 PR 담당자</cite>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-label">Contact</p>
+            <h2>브랜드의 다음 뷰티 콘텐츠를 함께 설계해요.</h2>
+          </div>
+          <p class="section-desc">제품명, 희망 채널, 업로드 일정, 필요한 결과물을 남겨주시면 협업 가능 범위와 견적을 회신합니다.</p>
+        </div>
+        <div class="contact-grid">
+          <ul class="contact-list reveal">
+            <li><a href="mailto:hello@minseobeauty.kr">hello@minseobeauty.kr</a></li>
+            <li><a href="tel:+821012345678">+82 10 1234 5678</a></li>
+            <li><a href="https://www.instagram.com/" target="_blank" rel="noreferrer">@minseo.beauty</a></li>
+            <li><a href="https://blog.naver.com/" target="_blank" rel="noreferrer">Naver Beauty Blog</a></li>
+          </ul>
+          <form class="contact-form reveal" id="contactForm">
+            <div class="form-row">
+              <div class="field">
+                <label for="name">담당자명</label>
+                <input id="name" name="name" type="text" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="brandName">브랜드명</label>
+                <input id="brandName" name="brandName" type="text" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="email">이메일</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="message">문의 내용</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button class="btn" type="submit">문의 내용 확인</button>
+            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>Min Seo Beauty Portfolio</span>
+      <span>Blog, Short-form, Beauty Campaign</span>
+    </div>
+  </footer>
+
+  <div class="modal" id="caseModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-panel">
+      <div class="modal-image">
+        <img id="modalImage" src="" alt="">
+      </div>
+      <div class="modal-body">
+        <div class="modal-top">
+          <div>
+            <p class="section-label" id="modalCategory"></p>
+            <h3 id="modalTitle"></h3>
+          </div>
+          <button class="modal-close" type="button" aria-label="상세 창 닫기">×</button>
+        </div>
+        <p id="modalText"></p>
+        <div class="modal-stats" id="modalStats"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelector("#navLinks");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const caseCards = document.querySelectorAll(".case-card");
+    const modal = document.querySelector("#caseModal");
+    const modalImage = document.querySelector("#modalImage");
+    const modalCategory = document.querySelector("#modalCategory");
+    const modalTitle = document.querySelector("#modalTitle");
+    const modalText = document.querySelector("#modalText");
+    const modalStats = document.querySelector("#modalStats");
+    const modalClose = document.querySelector(".modal-close");
+    const contactForm = document.querySelector("#contactForm");
+    const formStatus = document.querySelector("#formStatus");
+
+    const cases = [
+      {
+        category: "Skincare Launch",
+        title: "민감 피부 수분 세럼 런칭 리뷰",
+        image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1400&q=84",
+        text: "제품의 진정 성분, 흡수 속도, 화장 전 밀림 여부를 7일간 기록했습니다. 리뷰 본문에는 피부 타입별 사용 팁과 키워드형 Q&A를 넣어 검색 유입을 강화했습니다.",
+        stats: [["42K", "블로그 조회"], ["18%", "링크 클릭률"], ["312", "저장 및 공유"]]
+      },
+      {
+        category: "Makeup Color",
+        title: "가을 립 컬러 5종 발색 콘텐츠",
+        image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=1400&q=84",
+        text: "실내 조명, 자연광, 풀 메이크업 상태의 발색을 각각 촬영했습니다. 퍼스널 컬러별 추천 문장을 구성해 구매 전 문의 댓글을 늘렸습니다.",
+        stats: [["68K", "릴스 조회"], ["1.9K", "저장"], ["27%", "댓글 증가"]]
+      },
+      {
+        category: "Clean Beauty",
+        title: "비건 클렌징 루틴 숏폼 시리즈",
+        image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1400&q=84",
+        text: "아침 세안, 운동 후 클렌징, 저녁 더블 클렌징의 세 가지 상황으로 나누어 반복 시청이 가능한 시리즈를 제작했습니다.",
+        stats: [["3편", "숏폼 시리즈"], ["12.4%", "평균 저장률"], ["2주", "캠페인 기간"]]
+      },
+      {
+        category: "Base Makeup",
+        title: "여름 쿠션 지속력 테스트",
+        image: "https://images.unsplash.com/photo-1487412912498-0447578fcca8?auto=format&fit=crop&w=1400&q=84",
+        text: "출근 전, 점심 이후, 퇴근 후 피부 표현을 동일한 앵글로 촬영했습니다. 무너짐과 다크닝을 독자가 빠르게 비교할 수 있도록 구성했습니다.",
+        stats: [["5시간", "착용 테스트"], ["36K", "포스트 조회"], ["146", "구매 문의"]]
+      },
+      {
+        category: "Home Care",
+        title: "슬리핑 마스크 홈케어 기획",
+        image: "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1400&q=84",
+        text: "피부 컨디션이 떨어지는 주중 저녁 루틴에 맞춰 사용 장면을 설계했습니다. 다음날 베이스 메이크업 궁합까지 연결해 실용성을 강조했습니다.",
+        stats: [["31K", "콘텐츠 도달"], ["2.3K", "상세 페이지 유입"], ["91%", "긍정 댓글 비율"]]
+      },
+      {
+        category: "Sustainable Beauty",
+        title: "리필 패키지 캠페인 스토리",
+        image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=1400&q=84",
+        text: "리필 구조, 사용 편의성, 욕실 정리 장면을 묶어 지속 가능성 메시지가 생활 속 선택처럼 느껴지도록 기획했습니다.",
+        stats: [["24K", "블로그 조회"], ["11%", "브랜드 검색 증가"], ["4.8", "콘텐츠 만족도"]]
+      }
+    ];
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.addEventListener("click", (event) => {
+      if (event.target.tagName === "A") {
+        navLinks.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+
+        filterButtons.forEach((item) => item.classList.remove("is-active"));
+        button.classList.add("is-active");
+
+        caseCards.forEach((card) => {
+          const shouldShow = filter === "all" || card.dataset.category === filter;
+          card.style.display = shouldShow ? "" : "none";
+        });
+      });
+    });
+
+    document.querySelectorAll(".case-detail").forEach((button) => {
+      button.addEventListener("click", () => {
+        const item = cases[Number(button.dataset.case)];
+        modalImage.src = item.image;
+        modalImage.alt = item.title;
+        modalCategory.textContent = item.category;
+        modalTitle.textContent = item.title;
+        modalText.textContent = item.text;
+        modalStats.innerHTML = item.stats.map((stat) => (
+          `<div><strong>${stat[0]}</strong><span>${stat[1]}</span></div>`
+        )).join("");
+        modal.classList.add("is-open");
+        modal.setAttribute("aria-hidden", "false");
+        modalClose.focus();
+      });
+    });
+
+    const closeModal = () => {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+    };
+
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("is-open")) {
+        closeModal();
+      }
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        const target = entry.target;
+        const end = Number(target.dataset.count);
+        let current = 0;
+        const step = Math.max(1, Math.ceil(end / 42));
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= end) {
+            current = end;
+            clearInterval(timer);
+          }
+          target.textContent = current;
+        }, 28);
+
+        countObserver.unobserve(target);
+      });
+    }, { threshold: 0.75 });
+
+    document.querySelectorAll("[data-count]").forEach((element) => countObserver.observe(element));
+
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const formData = new FormData(contactForm);
+      const name = formData.get("name");
+      const brandName = formData.get("brandName");
+      formStatus.textContent = `${name}님, ${brandName} 협업 문의가 화면에서 확인되었습니다. 실제 발송 기능은 백엔드 연결 시 추가할 수 있습니다.`;
+      contactForm.reset();
+    });
+  </script>
+</body>
+</html>
